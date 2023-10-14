@@ -1,0 +1,70 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int r,c;
+    cout<<"enter rows and columns of matrix : ";
+    cin>>r>>c;
+    int arr[r][c];
+    cout<<"enter elements of matrix : ";
+        cout<<endl;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+    int primarySum=0,secondarySum=0;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(i==j){
+                primarySum+=arr[i][j];
+            }
+        }
+    }
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c/2;j++){
+            swap(arr[i][j],arr[i][c-1-j]);
+        }
+    }
+
+    cout<<"new matrix : ";
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(i==j){
+                secondarySum+=arr[i][j];
+            }
+        }
+    }
+
+    int realAns=0;
+    int ans0=primarySum-secondarySum;
+    if(ans0>=0){
+        realAns=ans0;
+    }
+    else{
+        int ans1=(ans0*(-2))+ans0;
+        realAns=ans1;
+    }
+    // return realAns;
+
+    cout<<"diagonal sum of matrix is : "<<realAns;
+    return 0;
+}
